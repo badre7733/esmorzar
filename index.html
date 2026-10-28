@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ca" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El lladre del esmorzar del professor de física</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        physics: {
+                            50: '#f0f9ff',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            950: '#030712',
+                        },
+                        amberGlow: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gold-glow {
+            box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.45);
+        }
+        .physics-glow {
+            box-shadow: 0 0 30px -5px rgba(56, 189, 248, 0.25);
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .atom-pattern {
+            background-image: radial-gradient(rgba(56, 189, 248, 0.12) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(56, 189, 248, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between atom-pattern selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- AMBIENT BACKGROUND GLOWS -->
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="fixed bottom-10 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Branding -->
+                <div class="flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 via-amber-400 to-yellow-300 flex items-center justify-center text-slate-950 font-black text-2xl shadow-lg shadow-amber-500/25 ring-2 ring-amber-400/30">
+                        🥪
+                    </div>
+                    <div>
+                        <h1 class="font-display font-extrabold text-lg md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-200 leading-tight">
+                            El lladre del esmorzar
+                        </h1>
+                        <p class="text-xs text-slate-400 font-mono flex items-center gap-1.5">
+                            <i data-lucide="atom" class="w-3.5 h-3.5 text-sky-400 animate-spin-slow"></i> Professor de Física &bull; Gran Apuesta
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Session Info / Login Action -->
+                <div id="navSessionArea" class="flex items-center gap-3">
+                    <!-- Dynamic JS -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow space-y-8">
+
+        <!-- HERO BANNER -->
+        <section class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-950 border border-slate-800/80 p-6 md:p-10 shadow-2xl physics-glow">
+            <div class="absolute -right-8 -bottom-10 opacity-10 text-9xl select-none pointer-events-none">⚛️</div>
+            <div class="relative z-10 max-w-3xl space-y-4">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold uppercase tracking-wider">
+                    <span>⚡ Recompensa: El millor esmorzar pagat pel profe</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-display font-black text-white leading-tight tracking-tight">
+                    Qui llegeixi més pàgines se'n porta el premi!
+                </h2>
+                <p class="text-slate-300 text-base md:text-lg leading-relaxed">
+                    Benvingut a la competició oficial de lectura de física. Enregistra cada dia el llibre, les pàgines llegides i un breu resum de la sessió. El número 1 al ranking s'emporta l'esmorzar de regal!
+                </p>
+            </div>
+        </section>
+
+        <!-- STATS BAR -->
+        <section class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="glass-panel rounded-2xl p-4 border border-slate-800 flex items-center justify-between">
+                <div>
+                    <div class="text-xs font-mono uppercase text-slate-400">Total Pàgines Classe</div>
+                    <div class="text-2xl font-black font-display text-sky-400" id="statTotalPages">0</div>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center">
+                    <i data-lucide="book-open-check" class="w-5 h-5"></i>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-2xl p-4 border border-slate-800 flex items-center justify-between">
+                <div>
+                    <div class="text-xs font-mono uppercase text-slate-400">Mitjana per Alumne</div>
+                    <div class="text-2xl font-black font-display text-amber-400" id="statAvgPages">0</div>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
+                    <i data-lucide="calculator" class="w-5 h-5"></i>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-2xl p-4 border border-slate-800 flex items-center justify-between">
+                <div>
+                    <div class="text-xs font-mono uppercase text-slate-400">Lectors Actius</div>
+                    <div class="text-2xl font-black font-display text-emerald-400" id="statActiveReaders">0 / 31</div>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN LAYOUT (RANKING + USER PANEL) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- LEFT COLUMN: LEADERBOARD (7/8 cols) -->
+            <section class="lg:col-span-7 xl:col-span-8 space-y-6">
+                
+                <!-- TOP LEADER HIGHLIGHT CARD -->
+                <div id="topLeaderCard" class="relative rounded-3xl bg-gradient-to-br from-amber-500/20 via-slate-900 to-slate-950 border-2 border-amber-500/40 p-6 gold-glow transition-all">
+                    <!-- Dynamic rendering -->
+                </div>
+
+                <!-- SEARCH & TITLE -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 glass-panel p-4 rounded-2xl border border-slate-800">
+                    <h3 class="font-display font-bold text-xl text-white flex items-center gap-2.5">
+                        <i data-lucide="trophy" class="w-6 h-6 text-amber-400"></i>
+                        Classificació de la Classe (31 Alumnes)
+                    </h3>
+                    <div class="relative w-full sm:w-64">
+                        <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="searchInput" oninput="renderLeaderboard()" placeholder="Cercar alumne..." 
+                            class="w-full pl-10 pr-4 py-2 bg-slate-950/80 border border-slate-800 rounded-xl text-sm focus:outline-none focus:border-sky-500 text-slate-200 placeholder-slate-500">
+                    </div>
+                </div>
+
+                <!-- PARTICIPANTS LIST -->
+                <div class="glass-panel border border-slate-800/80 rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-950/80 border-b border-slate-800 text-xs uppercase tracking-wider text-slate-400 font-mono">
+                                    <th class="py-3.5 px-4 text-center">Pos</th>
+                                    <th class="py-3.5 px-4">Alumne</th>
+                                    <th class="py-3.5 px-4 text-center">Sessions</th>
+                                    <th class="py-3.5 px-4 text-right">Pàgines Totals</th>
+                                    <th class="py-3.5 px-4 text-center">Historial</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboardBody" class="divide-y divide-slate-800/60 text-sm">
+                                <!-- Dynamic JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT COLUMN: LOGIN OR LOGGING FORM (4/5 cols) -->
+            <section class="lg:col-span-5 xl:col-span-4 space-y-6">
+                
+                <!-- UNAUTHENTICATED BOX -->
+                <div id="loginCard" class="glass-panel border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-6">
+                    <div class="text-center space-y-2">
+                        <div class="w-14 h-14 rounded-2xl bg-sky-500/10 border border-sky-500/30 text-sky-400 flex items-center justify-center mx-auto text-2xl shadow-inner">
+                            <i data-lucide="key-round" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-white">Accés d'Alumne</h3>
+                        <p class="text-xs text-slate-400">Selecciona el teu nom per registrar les lectures.</p>
+                    </div>
+
+                    <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Alumne</label>
+                            <select id="loginUserSelect" required class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-sky-500">
+                                <option value="" disabled selected>-- Tria el teu nom --</option>
+                                <!-- Rendered dynamically -->
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Contrasenya</label>
+                            <input type="password" id="loginPassword" required placeholder="Ingressa la contrasenya"
+                                class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-sky-500">
+                            <p class="text-[11px] text-slate-400 mt-1">Clau inicial per defecte: <code class="text-amber-400 font-mono font-bold">1234</code></p>
+                        </div>
+
+                        <div id="loginError" class="hidden text-xs text-rose-400 bg-rose-500/10 p-3 rounded-xl border border-rose-500/20 text-center"></div>
+
+                        <button type="submit" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-sky-500 to-physics-600 hover:from-sky-400 hover:to-physics-500 font-bold text-white text-sm shadow-lg shadow-sky-500/25 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="log-in" class="w-4 h-4"></i> Entrar al Diario
+                        </button>
+                    </form>
+                </div>
+
+                <!-- AUTHENTICATED PANEL -->
+                <div id="userPanelCard" class="hidden glass-panel border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-6">
+                    <!-- User Header -->
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                        <div>
+                            <span class="text-xs font-mono text-sky-400 uppercase">Sessió d'Alumne</span>
+                            <h3 id="currentUserName" class="font-display font-bold text-lg text-white">---</h3>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button onclick="openChangePasswordModal()" class="p-2 text-slate-400 hover:text-amber-400 hover:bg-slate-800/80 rounded-xl transition" title="Canviar Contrasenya">
+                                <i data-lucide="settings" class="w-5 h-5"></i>
+                            </button>
+                            <button onclick="handleLogout()" class="p-2 text-slate-400 hover:text-rose-400 hover:bg-slate-800/80 rounded-xl transition" title="Tancar Sessió">
+                                <i data-lucide="log-out" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- USER STATS -->
+                    <div class="grid grid-cols-2 gap-3 text-center">
+                        <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-slate-800/80">
+                            <div class="text-2xl font-black font-display text-amber-400" id="userStatPages">0</div>
+                            <div class="text-[11px] font-mono text-slate-400 uppercase">Les teves Pàgines</div>
+                        </div>
+                        <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-slate-800/80">
+                            <div class="text-2xl font-black font-display text-sky-400" id="userStatRank">#--</div>
+                            <div class="text-[11px] font-mono text-slate-400 uppercase">Posició Ranking</div>
+                        </div>
+                    </div>
+
+                    <!-- NEW READING LOG FORM -->
+                    <form id="readingForm" onsubmit="handleAddLog(event)" class="space-y-4 pt-1">
+                        <h4 class="font-display font-bold text-sm text-slate-200 flex items-center gap-2">
+                            <i data-lucide="plus-circle" class="w-4 h-4 text-sky-400"></i> Enregistrar Lectura d'Avui
+                        </h4>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-1">Títol del Llibre</label>
+                            <input type="text" id="logBookTitle" required placeholder="Nom del llibre..." 
+                                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-sky-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-1">Pàgines llegides avui</label>
+                            <input type="number" id="logPages" min="1" required placeholder="Ex. 30" 
+                                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-sky-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-1">Resum de la sessió</label>
+                            <textarea id="logSummary" rows="3" required placeholder="Escriu un petit resum del que has llegit avui..." 
+                                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-sky-500 text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 font-bold text-slate-950 text-sm shadow-lg shadow-amber-500/20 transition flex items-center justify-center gap-2">
+                            <i data-lucide="check-circle-2" class="w-4 h-4"></i> Desar Sessió
+                        </button>
+                    </form>
+
+                    <!-- LOG HISTORY FOR LOGGED-IN USER -->
+                    <div class="pt-2 border-t border-slate-800">
+                        <h4 class="font-display font-bold text-xs uppercase font-mono text-slate-400 mb-3">Els teus Registres</h4>
+                        <div id="userLogsHistory" class="space-y-2.5 max-h-52 overflow-y-auto pr-1 custom-scrollbar">
+                            <!-- JS Dynamic -->
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- MODAL: VIEW DETAILED USER HISTORY -->
+    <div id="userModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-panel border border-slate-800 rounded-3xl max-w-xl w-full p-6 space-y-5 shadow-2xl relative">
+            <button onclick="closeUserModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="flex items-center gap-4">
+                <div id="modalAvatar" class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-sky-500 to-physics-600 text-white flex items-center justify-center font-bold text-xl font-display shadow-md">
+                    --
+                </div>
+                <div>
+                    <h3 id="modalUserName" class="font-display font-bold text-xl text-white">---</h3>
+                    <p id="modalUserSub" class="text-xs text-slate-400 font-mono">0 pàgines totals llegides</p>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-4">
+                <h4 class="text-xs font-mono uppercase text-slate-400 mb-3">Historial de sessions registrades</h4>
+                <div id="modalLogsList" class="space-y-3 max-h-72 overflow-y-auto pr-1 custom-scrollbar">
+                    <!-- Dynamic modal content -->
+                </div>
+            </div>
+
+            <div class="pt-2 text-right">
+                <button onclick="closeUserModal()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-semibold text-slate-200 transition">
+                    Tancar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: CHANGE PASSWORD -->
+    <div id="passwordModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-panel border border-slate-800 rounded-3xl max-w-md w-full p-6 space-y-5 shadow-2xl relative">
+            <button onclick="closePasswordModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="space-y-1">
+                <h3 class="font-display font-bold text-xl text-white">Canviar Contrasenya</h3>
+                <p class="text-xs text-slate-400">Actualitza la teva clau d'accés personal.</p>
+            </div>
+
+            <form onsubmit="handleChangePassword(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono text-slate-400 mb-1">Nova Contrasenya</label>
+                    <input type="password" id="newPasswordInput" required placeholder="Nova clau..." 
+                        class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div id="passwordStatus" class="hidden text-xs p-3 rounded-xl text-center font-mono"></div>
+
+                <div class="flex justify-end gap-3 pt-2">
+                    <button type="button" onclick="closePasswordModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-sm">Cancel·lar</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm">Desar Clau</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800/80 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p class="text-sm text-slate-400">
+                El lladre del esmorzar del professor de física &bull; Concurs de Lectura
+            </p>
+            <p class="text-xs text-slate-400 font-mono">
+                31 Alumnes Participants &bull; Classificació Actualitzada en Temps Real
+            </p>
+        </div>
+    </footer>
+
+    <!-- APPLICATION LOGIC -->
+    <script>
+        // Official student list (31 participants initialized)
+        const INITIAL_STUDENTS = [
+            "01. MARC FISSE", "02. AINHOA RUIZ", "03. AITOR FERREIRO", "04. ALEIX PUJADAS",
+            "05. ÁLEX LATORRE", "06. ALEX LÓPEZ", "07. AMIR KABDANI", "08. AYOUB LOUAH",
+            "09. BADREDIN AZZAHRAOUI", "10. CHAYMAE EL", "11. DANI GARCÍA", "12. DARIO CANO",
+            "13. DÍDAC CANALS", "14. FATOU DIALLO", "15. GAIETÀ SÁNCHEZ", "16. IKER ARGUIMBAU",
+            "17. IMANE BENHDACH", "18. IVAN LOPEZ", "19. JABIR HAMMOU", "20. JOHAINA SELEI",
+            "21. JUDITH BONILLO", "22. JULEN DOPOZO", "23. LUIS CORDOBA", "24. MARC DÍAZ",
+            "25. MARC SALLÉS", "26. MIREIA LARGO", "27. POL PÉREZ", "28. POL RIBELL",
+            "29. ROGER REINA", "30. SABER EL KHALIFI", "31. XAVIER MENDOZA"
+        ];
+
+        let db = [];
+        let currentUser = null;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadDatabase();
+            checkSavedSession();
+            renderLoginSelect();
+            renderLeaderboard();
+            renderStats();
+            renderUserPanel();
+            lucide.createIcons();
+        });
+
+        function loadDatabase() {
+            const stored = localStorage.getItem('lladre_physics_db_v2');
+            if (stored) {
+                try {
+                    db = JSON.parse(stored);
+                } catch(e) {
+                    initDefaultDb();
+                }
+            } else {
+                initDefaultDb();
+            }
+        }
+
+        function initDefaultDb() {
+            db = INITIAL_STUDENTS.map(studentName => ({
+                id: studentName.replace(/[^a-zA-Z0-0]/g, '_').toLowerCase(),
+                name: studentName,
+                password: '1234',
+                totalPages: 0,
+                logs: []
+            }));
+            saveDatabase();
+        }
+
+        function saveDatabase() {
+            localStorage.setItem('lladre_physics_db_v2', JSON.stringify(db));
+        }
+
+        function checkSavedSession() {
+            const savedUserId = localStorage.getItem('lladre_physics_session');
+            if (savedUserId) {
+                const found = db.find(u => u.id === savedUserId);
+                if (found) currentUser = found;
+            }
+        }
+
+        function renderLoginSelect() {
+            const select = document.getElementById('loginUserSelect');
+            select.innerHTML = '<option value="" disabled selected>-- Tria el teu nom --</option>' + 
+                db.map(u => `<option value="${u.id}">${u.name}</option>`).join('');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const userId = document.getElementById('loginUserSelect').value;
+            const pass = document.getElementById('loginPassword').value;
+            const errDiv = document.getElementById('loginError');
+
+            const user = db.find(u => u.id === userId);
+            if (!user) {
+                showError('Selecciona un alumne de la llista.');
+                return;
+            }
+
+            if (user.password !== pass) {
+                showError('Contrasenya incorrecta. (Clau inicial: 1234)');
+                return;
+            }
+
+            currentUser = user;
+            localStorage.setItem('lladre_physics_session', user.id);
+            errDiv.classList.add('hidden');
+            document.getElementById('loginPassword').value = '';
+
+            renderUserPanel();
+            renderLeaderboard();
+            renderStats();
+        }
+
+        function showError(msg) {
+            const errDiv = document.getElementById('loginError');
+            errDiv.textContent = msg;
+            errDiv.classList.remove('hidden');
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            localStorage.removeItem('lladre_physics_session');
+            renderUserPanel();
+            renderLeaderboard();
+        }
+
+        function renderStats() {
+            const total = db.reduce((acc, u) => acc + u.totalPages, 0);
+            const active = db.filter(u => u.totalPages > 0).length;
+            const avg = Math.round(total / (db.length || 1));
+
+            document.getElementById('statTotalPages').textContent = total.toLocaleString();
+            document.getElementById('statAvgPages').textContent = avg.toLocaleString();
+            document.getElementById('statActiveReaders').textContent = `${active} / 31`;
+        }
+
+        function renderUserPanel() {
+            const loginCard = document.getElementById('loginCard');
+            const userPanelCard = document.getElementById('userPanelCard');
+            const navSessionArea = document.getElementById('navSessionArea');
+
+            if (currentUser) {
+                loginCard.classList.add('hidden');
+                userPanelCard.classList.remove('hidden');
+
+                document.getElementById('currentUserName').textContent = currentUser.name;
+                document.getElementById('userStatPages').textContent = currentUser.totalPages;
+
+                const sorted = [...db].sort((a,b) => b.totalPages - a.totalPages);
+                const rank = sorted.findIndex(u => u.id === currentUser.id) + 1;
+                document.getElementById('userStatRank').textContent = `#${rank}`;
+
+                navSessionArea.innerHTML = `
+                    <div class="flex items-center gap-3 bg-slate-900/90 px-3.5 py-1.5 rounded-2xl border border-slate-800 shadow-md">
+                        <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center font-display text-sm border border-amber-500/30">
+                            ${currentUser.name.charAt(0)}
+                        </div>
+                        <div class="text-left hidden sm:block">
+                            <div class="text-xs font-bold text-white">${escapeHtml(currentUser.name)}</div>
+                            <div class="text-[10px] text-amber-400 font-mono">${currentUser.totalPages} pàgines</div>
+                        </div>
+                        <button onclick="handleLogout()" class="text-xs text-slate-400 hover:text-rose-400 ml-1 p-1" title="Tancar Sessió">
+                            <i data-lucide="log-out" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+
+                const logsContainer = document.getElementById('userLogsHistory');
+                if (currentUser.logs.length === 0) {
+                    logsContainer.innerHTML = `<p class="text-xs text-slate-500 italic py-2">Encara no has enregistrat cap lectura.</p>`;
+                } else {
+                    logsContainer.innerHTML = currentUser.logs.map(log => `
+                        <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-xs space-y-1">
+                            <div class="flex justify-between font-semibold text-slate-200">
+                                <span>📖 ${escapeHtml(log.book)}</span>
+                                <span class="text-amber-400 font-mono">+${log.pages} pàg.</span>
+                            </div>
+                            <p class="text-slate-400 text-[11px] leading-relaxed">${escapeHtml(log.summary)}</p>
+                            <div class="text-[10px] text-slate-500 font-mono text-right">${log.date}</div>
+                        </div>
+                    `).join('');
+                }
+
+            } else {
+                loginCard.classList.remove('hidden');
+                userPanelCard.classList.add('hidden');
+
+                navSessionArea.innerHTML = `
+                    <a href="#loginCard" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 transition">
+                        Entrar / Identificar-se
+                    </a>
+                `;
+            }
+            lucide.createIcons();
+        }
+
+        function handleAddLog(e) {
+            e.preventDefault();
+            if (!currentUser) return;
+
+            const titleInput = document.getElementById('logBookTitle');
+            const pagesInput = document.getElementById('logPages');
+            const summaryInput = document.getElementById('logSummary');
+
+            const pages = parseInt(pagesInput.value, 10);
+            if (isNaN(pages) || pages <= 0) return;
+
+            const newLog = {
+                id: Date.now(),
+                book: titleInput.value.trim(),
+                pages: pages,
+                summary: summaryInput.value.trim(),
+                date: new Date().toLocaleString('ca-ES', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
+            };
+
+            currentUser.logs.unshift(newLog);
+            currentUser.totalPages += pages;
+
+            saveDatabase();
+            
+            titleInput.value = '';
+            pagesInput.value = '';
+            summaryInput.value = '';
+
+            renderUserPanel();
+            renderLeaderboard();
+            renderStats();
+        }
+
+        function renderLeaderboard() {
+            const searchTerm = (document.getElementById('searchInput')?.value || '').toLowerCase();
+            const sorted = [...db].sort((a,b) => b.totalPages - a.totalPages);
+
+            const topLeader = sorted[0];
+            const topCard = document.getElementById('topLeaderCard');
+            
+            if (topLeader && topLeader.totalPages > 0) {
+                topCard.innerHTML = `
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+                        <div class="flex items-center gap-4">
+                            <div class="relative">
+                                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-400 via-yellow-400 to-amber-500 text-slate-950 font-black text-3xl flex items-center justify-center shadow-xl ring-4 ring-amber-400/20">
+                                    👑
+                                </div>
+                                <span class="absolute -bottom-2 -right-2 bg-slate-950 text-amber-400 text-[10px] font-mono px-2 py-0.5 rounded-full border border-amber-500 font-bold">#1</span>
+                            </div>
+                            <div>
+                                <div class="text-xs font-mono uppercase text-amber-400 font-bold tracking-wider">El Lladre de l'Esmorzar &bull; LÍDER ACTUAL</div>
+                                <h3 class="text-2xl font-display font-black text-white">${escapeHtml(topLeader.name)}</h3>
+                                <p class="text-xs text-slate-300 font-mono">${topLeader.logs.length} sessions registrades</p>
+                            </div>
+                        </div>
+                        <div class="text-center sm:text-right bg-slate-950/80 p-4 rounded-2xl border border-amber-500/30 min-w-[140px]">
+                            <div class="text-3xl font-black font-display text-amber-400">${topLeader.totalPages}</div>
+                            <div class="text-[11px] font-mono text-slate-400 uppercase">Pàgines Totals</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                topCard.innerHTML = `
+                    <div class="text-center py-4 space-y-2">
+                        <div class="text-4xl">🥪</div>
+                        <h3 class="font-display font-bold text-lg text-amber-400">L'esmorzar està reservat per al millor lector!</h3>
+                        <p class="text-xs text-slate-400 max-w-md mx-auto">Comença a llegir i registra les teves pàgines per posicionar-te en el lloc #1 del ranking.</p>
+                    </div>
+                `;
+            }
+
+            const tbody = document.getElementById('leaderboardBody');
+            const filtered = sorted.filter(u => u.name.toLowerCase().includes(searchTerm));
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-slate-500 text-xs">No s'ha trobat cap alumne amb aquest nom.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map((student) => {
+                const realRank = sorted.findIndex(u => u.id === student.id) + 1;
+                let rankBadge = `<span class="font-mono text-slate-400 font-semibold">${realRank}</span>`;
+
+                if (realRank === 1 && student.totalPages > 0) rankBadge = `<span class="text-lg">🥇</span>`;
+                else if (realRank === 2 && student.totalPages > 0) rankBadge = `<span class="text-lg">🥈</span>`;
+                else if (realRank === 3 && student.totalPages > 0) rankBadge = `<span class="text-lg">🥉</span>`;
+
+                const isMe = currentUser && currentUser.id === student.id;
+
+                return `
+                    <tr class="hover:bg-slate-800/40 transition ${isMe ? 'bg-sky-500/10 font-semibold' : ''}">
+                        <td class="py-3.5 px-4 text-center">${rankBadge}</td>
+                        <td class="py-3.5 px-4 font-medium text-slate-200">
+                            <div class="flex items-center gap-2">
+                                <span>${escapeHtml(student.name)}</span>
+                                ${isMe ? '<span class="text-[10px] bg-sky-500/20 text-sky-400 px-2 py-0.5 rounded-full font-mono font-bold">Tu</span>' : ''}
+                            </div>
+                        </td>
+                        <td class="py-3.5 px-4 text-center font-mono text-xs text-slate-400">
+                            ${student.logs.length}
+                        </td>
+                        <td class="py-3.5 px-4 text-right font-display font-bold text-base ${student.totalPages > 0 ? 'text-amber-400' : 'text-slate-500'}">
+                            ${student.totalPages} <span class="text-xs font-normal text-slate-500 font-mono">pàg.</span>
+                        </td>
+                        <td class="py-3.5 px-4 text-center">
+                            <button onclick="openUserModal('${student.id}')" class="p-1.5 text-slate-400 hover:text-sky-400 hover:bg-slate-800/80 rounded-lg transition" title="Veure registres">
+                                <i data-lucide="eye" class="w-4 h-4"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function openUserModal(userId) {
+            const user = db.find(u => u.id === userId);
+            if (!user) return;
+
+            document.getElementById('modalUserName').textContent = user.name;
+            document.getElementById('modalUserSub').textContent = `${user.totalPages} pàgines totals llegides en ${user.logs.length} sessions`;
+            document.getElementById('modalAvatar').textContent = user.name.charAt(0);
+
+            const logsList = document.getElementById('modalLogsList');
+
+            if (user.logs.length === 0) {
+                logsList.innerHTML = `<p class="text-xs text-slate-500 italic py-6 text-center">Aquest alumne encara no té cap sessió de lectura enregistrada.</p>`;
+            } else {
+                logsList.innerHTML = user.logs.map(log => `
+                    <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800 space-y-1.5">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-slate-200 text-sm">📖 ${escapeHtml(log.book)}</span>
+                            <span class="font-mono text-xs bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded-md font-semibold">+${log.pages} pàg.</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/50">
+                            "${escapeHtml(log.summary)}"
+                        </p>
+                        <div class="text-[10px] text-slate-500 font-mono text-right pt-1">${log.date}</div>
+                    </div>
+                `).join('');
+            }
+
+            document.getElementById('userModal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeUserModal() {
+            document.getElementById('userModal').classList.add('hidden');
+        }
+
+        function openChangePasswordModal() {
+            if (!currentUser) return;
+            document.getElementById('newPasswordInput').value = '';
+            document.getElementById('passwordStatus').classList.add('hidden');
+            document.getElementById('passwordModal').classList.remove('hidden');
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').classList.add('hidden');
+        }
+
+        function handleChangePassword(e) {
+            e.preventDefault();
+            if (!currentUser) return;
+
+            const newPass = document.getElementById('newPasswordInput').value.trim();
+            const statusDiv = document.getElementById('passwordStatus');
+
+            if (!newPass) return;
+
+            currentUser.password = newPass;
+            saveDatabase();
+
+            statusDiv.textContent = 'Contrasenya actualitzada correctament!';
+            statusDiv.className = 'text-xs p-3 rounded-xl text-center font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
+            statusDiv.classList.remove('hidden');
+
+            setTimeout(() => {
+                closePasswordModal();
+            }, 1200);
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
